@@ -5,4 +5,4 @@ for i in range(10):
     if 0<=num<=200:
         result += num
         cnt += 1
-print(result, result/cnt)
+print(f"{result} {result/cnt:.1f}")
