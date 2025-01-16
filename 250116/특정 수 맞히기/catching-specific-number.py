@@ -6,3 +6,4 @@ while True:
         print("Lower")
     else:
         print("Good")
+        break
