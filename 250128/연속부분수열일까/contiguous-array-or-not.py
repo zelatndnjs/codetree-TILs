@@ -12,9 +12,9 @@ if B[0] in A:
             chk = 1
             break
 else:
-    print("NO")
+    print("No")
 
 if chk == 0:
-    print("YES")
+    print("Yes")
 else:
-    print("NO")
+    print("No")
