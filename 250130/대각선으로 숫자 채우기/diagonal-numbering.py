@@ -10,6 +10,8 @@ startx=0
 starty=0
 
 for num in range(1, n*m+1):
+    if x == m - 1:
+        chk = 1
     if x==0 or y == n-1:
         arr[y][x] = num
         if chk == 0:
@@ -22,8 +24,7 @@ for num in range(1, n*m+1):
             x = startx
             y = starty
     else:
-        if x == m-1:
-            chk = 1
+
         arr[y][x] = num
         x -= 1
         y += 1
