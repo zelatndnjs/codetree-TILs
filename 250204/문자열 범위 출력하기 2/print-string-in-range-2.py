@@ -1,4 +1,8 @@
 a = input()
 n = int(input())
-for i in range(n):
-    print(a[-1-i], end='')
+if n >= len(a):
+    name = a[::-1]
+    print(name)
+else:
+    for i in range(n):
+        print(a[-1-i], end='')
