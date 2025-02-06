@@ -1,0 +1,5 @@
+arr = list(input())
+arr.pop(1)
+arr.pop(-2)
+result = "".join(arr)
+print(result)
