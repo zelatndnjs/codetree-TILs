@@ -7,7 +7,7 @@ def f(a,o,c):
         print(f"{a} - {c} = {a-c}")
     elif o == '*':
         print(f"{a} * {c} = {a*c}")
-    elif 0 == '/':
+    elif o == '/':
         print(f"{a} / {c} = {a//c}")
     else:
         print("False")
