@@ -10,9 +10,10 @@ for i in range(len(a)-len(b)+1):
             cnt += 1
             if cnt == len(b):
                 chk = 1
-                print("Yes")
                 break
         else:
             continue
 if chk == 0:
     print("No")
+else:
+    print("Yes")
