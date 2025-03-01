@@ -16,6 +16,9 @@ def m(a,b):
 
 n = int(input())
 arr = list(map(int, input().split()))
-n = arr[0]
-arr = arr[1:]
-print(f(n, arr))
+if n == 1:
+    print(arr[0])
+else:
+    n = arr[0]
+    arr = arr[1:]
+    print(f(n, arr))
