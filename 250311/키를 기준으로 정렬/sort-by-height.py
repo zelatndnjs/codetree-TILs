@@ -1,11 +1,13 @@
-class Person:
-    def __init__(self, name, height, weight):
+class Score:
+    def __init__(self, name, kor, eng, math):
         self.name = name
-        self.height = height
-        self.weight = weight
+        self.kor = kor
+        self.eng = eng
+        self.math = math
+
 n = int(input())
 data = [tuple(input().split()) for _ in range(n)]
-people = [Person(name, height, weight) for name, height, weight in data]
-people.sort(key = lambda p: p.height)
-for person in people:
-    print(person.name, person.height, person.weight)
+students = [Score(name, kor, eng, math) for name, kor, eng, math in data]
+students.sort(key=lambda x: (x.kor, x.eng, x.math), reverse=True)
+for student in students:
+    print(student.name, student.kor, student.eng, student.math)
