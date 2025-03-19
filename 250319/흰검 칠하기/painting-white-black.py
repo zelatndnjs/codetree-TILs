@@ -9,8 +9,8 @@ class Tile:
             self.grey += 1
             self.col = 'grey'
 
-cur = 50000
-tiles = [Tile(white=0, black=0, grey=0, col='') for _ in range(100000)]
+cur = 100000
+tiles = [Tile(white=0, black=0, grey=0, col='') for _ in range(200000)]
 n = int(input())
 for i in range(n):
     num, direction = input().split()
