@@ -16,30 +16,14 @@ for i in range(x1[0], x2[0]):
         plane[i][j] = 1
 for i in range(x1[1], x2[1]):
     for j in range(y1[1], y2[1]):
-        plane[i][j] = 0
-minx=1
-miny=1
-maxx=0
-maxy=0
-b = 0
-for i in range(2000):
-    if b == 1:
-        break
-    for j in range(2000):
         if plane[i][j] == 1:
-            minx = i
-            miny = j
-            b = 1
-            break
+            plane[i][j] = 0
+x = []
+y = []
+for i in range(2001):
+    for j in range(2001):
+      if plane[i][j] == 1:
+        x.append(i)
+        y.append(j)
 
-b = 0
-for i in range(2000, -1, -1):
-    if b == 1:
-        break
-    for j in range(2000, -1, -1):
-        if plane[i][j] == 1:
-            maxx = i
-            maxy = j
-            b = 1
-            break
-print((maxx- minx+1) * (maxy - miny+1))
+print((max(x)- min(x)+1) * (max(y) - min(y)+1))
