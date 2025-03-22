@@ -25,5 +25,7 @@ for i in range(2001):
       if plane[i][j] == 1:
         x.append(i)
         y.append(j)
-
-print((max(x)- min(x)+1) * (max(y) - min(y)+1))
+if len(x) == 0 and len(y) == 0:
+    print(0)
+else:
+    print((max(x)- min(x)+1) * (max(y) - min(y)+1))
