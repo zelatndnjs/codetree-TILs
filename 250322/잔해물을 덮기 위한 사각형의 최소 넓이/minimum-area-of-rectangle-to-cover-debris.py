@@ -17,8 +17,8 @@ for i in range(x1[0], x2[0]):
 for i in range(x1[1], x2[1]):
     for j in range(y1[1], y2[1]):
         plane[i][j] = 0
-minx=0
-miny=0
+minx=1
+miny=1
 maxx=0
 maxy=0
 b = 0
