@@ -11,11 +11,11 @@ x1[1] += offset
 y1[1] += offset
 x2[1] += offset
 y2[1] += offset
-for i in range(x1[0], x2[0]+1):
-    for j in range(y1[0], y2[0]+1):
+for i in range(x1[0], x2[0]):
+    for j in range(y1[0], y2[0]):
         plane[i][j] = 1
-for i in range(x1[1], x2[1]+1):
-    for j in range(y1[1], y2[1]+1):
+for i in range(x1[1], x2[1]):
+    for j in range(y1[1], y2[1]):
         plane[i][j] = 0
 minx=0
 miny=0
@@ -42,4 +42,4 @@ for i in range(2000, -1, -1):
             maxy = j
             b = 1
             break
-print((maxx- minx) * (maxy - miny))
+print((maxx- minx+1) * (maxy - miny+1))
