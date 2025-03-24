@@ -1,14 +1,17 @@
-cnt = []
 n = int(input())
-num = []
+num = [] # 2 7 7 7 7 5 7
 for i in range(n):
-    a = int(input())
-    num.append(a)
+    num.append(int(input()))
+cnt = []
 a = 1
-for i in range(1, len(num)):
-    if num[i] != num[i-1]:
-        cnt.append(a)
-        a = 1
-    else:
-        a += 1
-print(max(cnt))
+if n == 1:
+    print(1)
+else:
+    for i in range(1, n):
+        if num[i] == num[i-1]:
+            a+= 1
+        else:
+            cnt.append(a)
+            a = 1
+    cnt.append(a)
+    print(max(cnt))
