@@ -25,14 +25,16 @@ for t, x, y in handshakes:
     # print(f"{y}번 개발자의 정보는")
     # print(f"아프면 1 안 아프면 0 : {developers[y - 1].sick}")
     # print(f"남은 악수 횟수 : {developers[y - 1].lefthandshake}")
-    if developers[x - 1].lefthandshake > 0 and developers[y - 1].sick == 0:
+    if developers[x - 1].lefthandshake > 0:
         developers[x - 1].lefthandshake -= 1
-        developers[y - 1].sick = 1
-        developers[y - 1].lefthandshake = K
-    elif developers[y - 1].lefthandshake > 0 and developers[x - 1].sick == 0:
+        if developers[y - 1].sick == 0:
+            developers[y - 1].sick = 1
+            developers[y - 1].lefthandshake = K
+    elif developers[y - 1].lefthandshake > 0:
         developers[y - 1].lefthandshake -= 1
-        developers[x - 1].sick = 1
-        developers[x - 1].lefthandshake = K
+        if developers[x - 1].sick == 0:
+            developers[x - 1].sick = 1
+            developers[x - 1].lefthandshake = K
     else:
         continue
     # print("만난 후!")
