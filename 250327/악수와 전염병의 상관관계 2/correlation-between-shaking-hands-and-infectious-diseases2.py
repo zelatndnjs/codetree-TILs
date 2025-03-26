@@ -30,7 +30,7 @@ for t, x, y in handshakes:
         if developers[y - 1].sick == 0:
             developers[y - 1].sick = 1
             developers[y - 1].lefthandshake = K
-    elif developers[y - 1].lefthandshake > 0:
+    if developers[y - 1].lefthandshake > 0:
         developers[y - 1].lefthandshake -= 1
         if developers[x - 1].sick == 0:
             developers[x - 1].sick = 1
