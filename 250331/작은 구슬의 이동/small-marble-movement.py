@@ -28,7 +28,7 @@ def change(direction):
 for i in range(t):
     newr = r + dxs[direction]
     newc = c + dys[direction]
-    if newr<0 or newr>n or newc<0 or newc>n:
+    if newr<0 or newr>=n or newc<0 or newc>=n:
         direction = change(direction)
     else:
         r = newr
