@@ -36,7 +36,7 @@ dy = [0, -1, 0, 1]
 if k<=n:
     startdirection = 0
     x = 0
-    y = n-1
+    y = k-1
 elif k<= 2*n:
     startdirection = 1
     x = k%n - 1
@@ -51,6 +51,7 @@ else:
     y = 0
 
 cnt = 0
+# print(f"현재 위치 {x} {y}, 방향 {startdirection}")
 
 while True:
     if x<0 or x>= n or y<0 or y >= n:
@@ -60,4 +61,5 @@ while True:
     x += dx[changedirection]
     y += dy[changedirection]
     startdirection = changedirection
+    # print(f"현재 위치 {x} {y}, 방향 {startdirection}")
 print(cnt)
