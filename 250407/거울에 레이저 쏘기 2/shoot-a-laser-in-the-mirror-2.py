@@ -36,18 +36,18 @@ dy = [0, -1, 0, 1]
 if k<=n:
     startdirection = 0
     x = 0
-    y = k-1
+    y = n-1
 elif k<= 2*n:
     startdirection = 1
-    x = k%3 - 1
-    y = k-1
+    x = k%n - 1
+    y = n-1
 elif k<=3*n:
     startdirection = 2
-    x = k - 1
-    y = k-1 - (k-1)%3
+    x = n - 1
+    y = n-1 - (k-1)%n
 else:
     startdirection = 3
-    x = k - 1 - (k-1)%3
+    x = n - 1 - (k-1)%n
     y = 0
 
 cnt = 0
