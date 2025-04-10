@@ -17,10 +17,10 @@ for i in range(n*n):
     square[x][y] = num
     d += 1
     d = d % 4
-    if square[x+dx[d]][y+dy[d]] != 0:
-        d -= 1
-        d =d %4
     if insquare(square, x+dx[d], y+dy[d]):
+        if square[x + dx[d]][y + dy[d]] != 0:
+            d -= 1
+            d = d % 4
         x = x+dx[d]
         y = y+dy[d]
 
