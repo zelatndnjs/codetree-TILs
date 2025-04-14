@@ -1,7 +1,7 @@
 r,c = map(int,input().split())
 board = [list(input().split()) for _ in range(r)]
 cnt = 0
-if board[0][0] == 'W':
+if board[0][0] == 'W' and board[r-1][c-1] == 'B':
     for i in range(1,r-2):
         for j in range(1,c-2):
             if board[i][j] == 'B':
@@ -9,7 +9,7 @@ if board[0][0] == 'W':
                     for p in range(j+1, c-1):
                         if board[k][p] == 'W':
                             cnt += 1
-else:
+elif board[0][0] == 'B' and board[r-1][c-1] == 'W':
     for i in range(1,r-2):
         for j in range(1,c-2):
             if board[i][j] == 'W':
