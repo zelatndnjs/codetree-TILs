@@ -6,6 +6,7 @@ s = 0
 for i in range(n):
     for j in range(n-2):
         cnt1 = coins[i][j] + coins[i][j+1] + coins[i][j+2]
+        cnt2 = 0
         for k in range(i,n):
             if k==i:
                 for p in range(j+3, n-2):
