@@ -8,7 +8,7 @@ for i in range(n):
         cnt1 = coins[i][j] + coins[i][j+1] + coins[i][j+2]
         for k in range(i,n):
             if k==i:
-                for p in range(j+1, n-2):
+                for p in range(j+3, n-2):
                     cnt2 = coins[k][p] + coins[k][p+1] + coins[k][p+2]
 
             else:
