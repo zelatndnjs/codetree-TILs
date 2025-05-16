@@ -32,5 +32,5 @@ for x in range(minx, maxx+1, 2):
         diff.append(max(cnt1, cnt2, cnt3, cnt4) - min(cnt1,cnt2,cnt3,cnt4))
         ans.append(max(cnt1, cnt2, cnt3, cnt4))
 idx = diff.index(min(diff))
-print(ans[idx])
+print(min(ans))
                 
