@@ -11,8 +11,8 @@ miny = min(yset) - 1
 maxy = max(yset) + 1
 diff = []
 ans = []
-for x in range(minx, maxx+1):
-    for y in range(miny, maxy+1):
+for x in range(minx, maxx+1, 2):
+    for y in range(miny, maxy+1, 2):
         cnt1 = 0
         cnt2 = 0
         cnt3 = 0
