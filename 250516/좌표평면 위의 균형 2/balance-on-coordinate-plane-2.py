@@ -24,8 +24,11 @@ for x in range(minx, maxx+1, 2):
                 cnt2 += 1
             elif dot[0] < x and dot[1] < y:
                 cnt3 += 1
-            else:
+            elif dot[0] > x and dot[1] < y:
                 cnt4 += 1
+            else:
+                print("Error")
+                
         diff.append(max(cnt1, cnt2, cnt3, cnt4) - min(cnt1,cnt2,cnt3,cnt4))
         ans.append(max(cnt1, cnt2, cnt3, cnt4))
 idx = diff.index(min(diff))
