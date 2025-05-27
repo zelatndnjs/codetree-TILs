@@ -2,10 +2,16 @@ n,k = map(int, input().split())
 num = list(map(int, input().split()))
 m = max(num)
 def move(num, cur, k, i):
+    chk = 0
     if num[cur] <= i:
-        for j in range(cur+1, cur+k+1):
+        for j in range(cur+1, min(n, cur+k+1)):
             if num[j] <= i:
+                chk = 0
                 return j
+            else:
+                chk = 1
+        if chk == 1:
+            return -1
         return -1
     else:
         return -1
