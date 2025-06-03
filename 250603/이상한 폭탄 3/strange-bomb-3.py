@@ -10,4 +10,7 @@ for i in range(n):
                 bombdic[bomb[i]] = 1
             break
 a=sorted(bombdic.items(), key=lambda x:x[1], reverse=True)
-print(a[0][0])
+if len(a) == 0:
+    print(0)
+else:
+    print(a[0][0])
