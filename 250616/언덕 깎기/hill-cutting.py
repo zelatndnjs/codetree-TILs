@@ -5,6 +5,7 @@ h = [int(input()) for _ in range(n)]
 minh = min(h)
 maxh = max(h)
 cost = sys.maxsize
+chk = 0
 for i in range(minh, maxh-17):
     cost1 = 0
     # i ~ i+17
@@ -16,5 +17,8 @@ for i in range(minh, maxh-17):
         else:
             continue
     if cost1 < cost:
+        chk = 1
         cost = cost1
+if chk == 0:
+    cost = 0
 print(cost)
