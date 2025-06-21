@@ -1,6 +1,6 @@
 n,m,p = map(int, input().split())
 programmers = [0 for i in range(n)]
-for i in range(n):
+for i in range(m):
     programmer, num = input().split()
     num = int(num)
     if i >= p-1:
