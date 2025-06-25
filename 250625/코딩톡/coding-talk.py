@@ -8,11 +8,18 @@ for i in range(p-1, 0, -1):
     else:
         p = i+1
         break
+chk = 0
 for i in range(m):
     programmer, num = arr[i]
     num = int(num)
+    if num == 0:
+        chk = 1
+        break
     if i >= p - 1:
         programmers[ord(programmer) - ord('A')] = 1
-for i in range(n):
-    if programmers[i] == 0:
-        print(chr(i+65), end=' ')
+if chk == 1:
+    print()
+else:
+    for i in range(n):
+        if programmers[i] == 0:
+            print(chr(i+65), end=' ')
