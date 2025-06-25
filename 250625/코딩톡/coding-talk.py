@@ -11,11 +11,11 @@ for i in range(p-1, 0, -1):
 chk = 0
 for i in range(m):
     programmer, num = arr[i]
-    num = int(num)
-    if num == 0:
-        chk = 1
-        break
+    num = int(num)  
     if i >= p - 1:
+        if num == 0:
+            chk = 1
+            break
         programmers[ord(programmer) - ord('A')] = 1
 if chk == 1:
     print()
