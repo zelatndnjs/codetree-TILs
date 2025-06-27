@@ -1,0 +1,9 @@
+a,b,x,y = map(int, input().split())
+start = min(a,b)
+end = max(a,b)
+telstart = min(x,y)
+telend = max(x,y)
+justd = b-a
+tel1d = abs(telstart - start) + abs(end-telend)
+tel2d = abs(telend - start) + abs(telstart - end)
+print(min(justd, tel1d, tel2d))
