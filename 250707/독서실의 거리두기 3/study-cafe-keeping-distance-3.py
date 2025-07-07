@@ -7,4 +7,8 @@ for i in range(n):
 distance = []
 for i in range(len(position)-1):
     distance.append(position[i+1] - position[i])
-print(max(distance)//2)
+distance.append(max(distance)//2)
+distance.append(max(distance) - max(distance)//2)
+m=max(distance)
+distance.remove(m)
+print(min(distance))
