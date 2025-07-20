@@ -13,7 +13,7 @@ for i in range(10):
         elif square[i][j] == 'L':
             lpos[0] = i
             lpos[1] = j
-if lpos[0] == bpos[0] or lpos[1] == bpos[1]:
+if lpos[0] == bpos[0] == rpos[0] or lpos[1] == bpos[1] == rpos[1]:
     print(abs(bpos[0] - lpos[0]) + abs(bpos[1] - lpos[1]) + 1)
 else:
     print(abs(bpos[0] - lpos[0]) + abs(bpos[1] - lpos[1]) -1)
