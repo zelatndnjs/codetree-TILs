@@ -3,7 +3,7 @@ ascore = 0
 bscore = 0
 cscore = 0
 scores = [0,0,0] # a,b,c
-best = 'none'
+best = 'ABC'
 ans = 0
 for i in range(n):
     name, score = input().split()
