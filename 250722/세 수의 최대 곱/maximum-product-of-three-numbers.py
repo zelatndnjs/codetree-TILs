@@ -1,4 +1,4 @@
-n = int(input(()))
+n = int(input())
 num = list(map(int, input().split()))
 if n == 3:
     print(num[0] * num[1] * num[2])
