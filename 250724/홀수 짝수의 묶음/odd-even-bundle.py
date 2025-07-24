@@ -9,8 +9,6 @@ for i in num:
         odds.append(i)
 a = len(evens)
 b = len(odds)
-print(a)
-print(b)
 ans = 0
 chk = 0 # 0이면 짝수 쌓기 1이면 홀수 쌓기
 while True:
