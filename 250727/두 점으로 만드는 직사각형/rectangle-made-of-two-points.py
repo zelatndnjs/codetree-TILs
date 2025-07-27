@@ -1,0 +1,7 @@
+x1, y1, x2, y2 = map(int, input().split())
+a1, b1, a2, b2 = map(int, input().split())
+s1 = min(x1, a1)
+d1 = min(y1, b1)
+s2 = max(x2, a2)
+d2 = max(y2, b2)
+print((s2-s1)*(d2-d1))
