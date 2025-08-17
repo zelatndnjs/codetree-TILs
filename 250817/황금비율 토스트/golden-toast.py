@@ -11,16 +11,16 @@ for i in range(m):
         a,b = com.split()
         str = str[:idx:] + '0' + b + str[idx::]
         idx += 2
-        if idx >= 2*n +1:
-            idx = 2*n
+        if idx >= len(str):
+            idx = len(str)-1
     elif com == 'L':
         idx -= 2
         if idx < 0 :
             idx = 0
     elif com == 'R':
         idx += 2
-        if idx >= 2*n+1:
-            idx = 2*n
+        if idx >= len(str):
+            idx = len(str)-1
     elif com == 'D':
         str = str[:idx:] + str[idx+2::]
 ans = ''
