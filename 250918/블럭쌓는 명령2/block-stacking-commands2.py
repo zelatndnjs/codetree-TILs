@@ -13,4 +13,4 @@ for _ in range(k):
     a, b = map(int, input().split())
     for i in range(a-1,b-1):
         block[i] += 1
-print(block.max)
+print(max(block))
