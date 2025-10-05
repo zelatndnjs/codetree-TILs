@@ -1,12 +1,8 @@
-from collections import deque
-
-
-n = int(input())
-dq = deque([i for i in range(1,n+1)])
+N = int(input())
+arr = [i for i in range(1,N+1)]
 while True:
-    if len(dq) == 1:
+    if len(arr) == 1:
         break
-    dq.popleft()
-    dq.append(dq.popleft())
-
-print(dq[0])
+    arr.pop(0)
+    arr.append(arr.pop(0))
+print(arr[0])
