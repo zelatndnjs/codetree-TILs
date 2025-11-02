@@ -10,6 +10,7 @@ for i in range(N):
         else:
             consarr.append(cons)
             cons = 1
+    consarr.append(cons)
     if max(consarr) >= M:
         happy += 1
 for i in range(N):
@@ -21,6 +22,7 @@ for i in range(N):
         else:
             consarr.append(cons)
             cons=1
+    consarr.append(cons)
     if max(consarr)>=M:
         happy+=1
 print(happy)
