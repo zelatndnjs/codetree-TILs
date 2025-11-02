@@ -11,12 +11,12 @@ for i in range(N):
     if cons >= M:
         happy += 1
 for i in range(N):
-    cons = 1
+    cons=1
     for j in range(N-1):
         if cube[j][i] == cube[j+1][i]:
-            cons += 1
+            cons+=1
         else:
-            cons = 1
-    if cons >= M:
-        happy += 1
+            cons=1
+    if cons>=M:
+        happy+=1
 print(happy)
