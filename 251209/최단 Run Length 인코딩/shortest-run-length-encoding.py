@@ -23,9 +23,10 @@ def enc(a):
             break
     new  = new + ''.join(nums)
     return new
-
-answer = 99999999
-for i in range(len(a)-1):
-    answer = min(answer, len(enc(a)))
-    a = shift(a)
+if len(a) == 1:
+    answer = 2
+else:
+    for i in range(len(a)-1):
+        answer = min(answer, len(enc(a)))
+        a = shift(a)
 print(answer)
