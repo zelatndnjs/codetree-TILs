@@ -33,6 +33,8 @@ def boom(grid, n, m):
                     index -= 1
         if chk == 0:
             break
+        else:
+            grid = newgrid
 
     return newgrid
 
