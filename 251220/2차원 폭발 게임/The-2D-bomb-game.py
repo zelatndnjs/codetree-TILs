@@ -63,8 +63,16 @@ def p(grid,n):
         print()
 
 for _ in range(k):
-    grid = boom(grid,n,m)
-    grid = rotate(grid,n)
+    chk = 0
+    for i in range(n):
+        for j in range(n):
+            if grid[i][j] != 0:
+                chk += 1
+    if chk == 0:
+        break
+    else:
+        grid = boom(grid,n,m)
+        grid = rotate(grid,n)
 grid = boom(grid,n,m)
 answer = 0
 for i in range(n):
