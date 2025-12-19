@@ -2,7 +2,7 @@ n,m,k = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
 
 def boom(grid, n, m):
-    for _ in range(3):
+    for _ in range(5):
         chk = 0
         newgrid = [[0 for _ in range(n)]for _ in range(n)]
         for i in range(n):
