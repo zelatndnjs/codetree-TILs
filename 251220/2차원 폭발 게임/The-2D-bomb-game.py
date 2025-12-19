@@ -2,31 +2,37 @@ n,m,k = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
 
 def boom(grid, n, m):
-    newgrid = [[0 for _ in range(n)]for _ in range(n)]
-    for i in range(n):
-        count = 1
-        start = 0
-        end = n-1
-        for j in range(n-1):
-            if grid[j][i] == grid[j+1][i] and grid[j][i] != 0:
-                count += 1
-            else:
-                if count >= m:
-                    end = j
-                    for k in range(start, end+1):
-                        grid[k][i] = 0
-                start = j+1
-                count = 1
-        if count >= m:
+    while True:
+        chk = 0
+        newgrid = [[0 for _ in range(n)]for _ in range(n)]
+        for i in range(n):
+            count = 1
+            start = 0
             end = n-1
-            for k in range(start, end+1):
-                grid[k][i] = 0
-    for i in range(n):
-        index = n-1
-        for j in range(n-1, -1, -1):
-            if grid[j][i] != 0:
-                newgrid[index][i] = grid[j][i]
-                index -= 1
+            for j in range(n-1):
+                if grid[j][i] == grid[j+1][i] and grid[j][i] != 0:
+                    count += 1
+                else:
+                    if count >= m:
+                        chk = 1
+                        end = j
+                        for k in range(start, end+1):
+                            grid[k][i] = 0
+                    start = j+1
+                    count = 1
+            if count >= m:
+                chk = 1
+                end = n-1
+                for k in range(start, end+1):
+                    grid[k][i] = 0
+        for i in range(n):
+            index = n-1
+            for j in range(n-1, -1, -1):
+                if grid[j][i] != 0:
+                    newgrid[index][i] = grid[j][i]
+                    index -= 1
+        if chk == 0:
+            break
 
     return newgrid
 
