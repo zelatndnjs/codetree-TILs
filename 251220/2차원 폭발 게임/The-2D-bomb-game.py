@@ -20,8 +20,12 @@ def boom(grid, n, m):
                             grid[k][i] = 0
                     start = j+1
                     count = 1
-            if count >= m:
+            if count >= m and m != 1:
                 chk = 1
+                end = n-1
+                for k in range(start, end+1):
+                    grid[k][i] = 0
+            elif count >= m:
                 end = n-1
                 for k in range(start, end+1):
                     grid[k][i] = 0
