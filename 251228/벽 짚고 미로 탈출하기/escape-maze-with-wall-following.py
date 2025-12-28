@@ -12,8 +12,9 @@ dy = [0,0, -1, 1]
 sx = x
 sy = y
 d = 3 # 0 = 상 1= 하 2 = 좌 3 = 우
-
+c = 0
 while True:
+    c += 1
     if grid[x+dx[d]][y+dy[d]] == '#':
         if d == 0:
             d = 2
@@ -58,7 +59,7 @@ while True:
     answer += 1
     x = x+dx[d]
     y = y+dy[d]
-    if x == sx and y == sy:
+    if c >= (n+2)**2:
         answer = -1
         break
 
