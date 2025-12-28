@@ -7,94 +7,60 @@ for i in range(1, n+1):
         grid[i][j] = str[j-1]
 
 answer = 0
+dx = [-1, 1, 0,0]
+dy = [0,0, -1, 1]
 sx = x
 sy = y
 d = 3 # 0 = 상 1= 하 2 = 좌 3 = 우
 
 while True:
-    if grid[x+1][y] == '#' and grid[x-1][y] == '#' and grid[x][y-1] == '#' and grid[x][y+1] == '#':
-        answer = -1
-        break
-    elif grid[x+1][y] == '#' and grid[x][y+1] == '#' and grid[x-1][y] == '#':
-        d = 2
-    elif grid[x][y-1] == '#' and grid[x][y+1] == '#' and grid[x-1][y] == '#':
-        d = 1
-    elif grid[x][y-1] == '#' and grid[x-1][y] == '#' and grid[x+1][y] == '#':
-        d = 3
-    elif grid[x][y-1] == '#' and grid[x][y+1] == '#' and grid[x+1][y] == '#':
-        d = 0
-    elif grid[x+1][y] == '#' and grid[x-1][y] == '#':
-        pass
-    elif grid[x][y-1] == '#' and grid[x][y+1] == '#':
-        pass
-    elif grid[x+1][y] == '#'  and grid[x][y-1] == '#':
-        if d == 1:
-            d = 3
-        else:
-            d = 0
-    elif grid[x+1][y] == '#' and grid[x][y+1] == '#':
-        if d == 3:
-            d = 0
-        else:
-            d = 2
-    elif grid[x-1][y] == '#' and grid[x][y-1] == '#':
+    if grid[x+dx[d]][y+dy[d]] == '#':
         if d == 0:
-            d = 3
-        else:
-            d = 1
-    elif grid[x-1][y] == '#' and grid[x][y+1] == '#':
-        if d == 3:
-            d = 1
-        else:
             d = 2
-    elif grid[x+1][y] == '#':
-        d = 3
-    elif grid[x-1][y] == '#':
-        d = 2
-    elif grid[x][y-1] == '#':
-        d = 1
-    elif grid[x][y+1] == '#':
-        d = 0
-    else:
-        if grid[x+1][y+1] == '#':
-            if d == 2:
-                d = 1
-            else:
-                d = 3
-        elif grid[x+1][y-1] == '#':
-            if d == 3:
-                d = 1
-            else:
-                d = 2
-        elif grid[x-1][y+1] == '#':
-            if d == 2:
-                d = 0
-            else:
-                d= 3
-        elif grid[x-1][y-1] == '#':
-            if d == 3:
-                d = 0
-            else:
-                d = 2
+        elif d == 1:
+            d = 3
+        elif d == 2:
+            d = 1
         else:
-            answer = -1
-            break
-    if d == 0:
-        x -= 1
-    elif d == 1:
-        x += 1
-    elif d == 2:
-        y -= 1
-    else:
-        y += 1
-
-    answer += 1
-
-    if grid[x][y] == '!':
+            d = 0
+    if grid[x+dx[d]][y+dy[d]] == '!':
+        answer += 1
         break
-
-    if x == sx and y == sy:
+    else:
+        if d == 0:
+            if grid[x+dx[d]][y+dy[d]+1] == '#':
+                pass
+            else:
+                answer += 1
+                x -= 1
+                d = 3
+        elif d == 1:
+            if grid[x+dx[d]][y+dy[d]-1] == '#':
+                pass
+            else:
+                answer += 1
+                x += 1
+                d = 2
+        elif d == 2:
+            if grid[x+dx[d]-1][y+dy[d]] == '#':
+                pass
+            else:
+                answer += 1
+                y -= 1
+                d = 0
+        else:
+            if grid[x+dx[d]+1][y+dy[d]] == '#':
+                pass
+            else:
+                answer += 1
+                y += 1
+                d = 1
+    answer += 1
+    x = x+dx[d]
+    y = y+dy[d]
+    if x == sx and y == sy and d == 3:
         answer = -1
         break
+
 
 print(answer)
