@@ -58,7 +58,7 @@ while True:
     answer += 1
     x = x+dx[d]
     y = y+dy[d]
-    if x == sx and y == sy and d == 3:
+    if x == sx and y == sy:
         answer = -1
         break
 
