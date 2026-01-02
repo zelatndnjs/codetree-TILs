@@ -37,7 +37,7 @@ while True:
             break
         else:
             answer += 1
-            if cur[0] == sx and cur[1] == sy and d == 0:
+            if answer >= 100:
                 answer = -1
             cur[0] += dx[d]
             cur[1] += dy[d]
