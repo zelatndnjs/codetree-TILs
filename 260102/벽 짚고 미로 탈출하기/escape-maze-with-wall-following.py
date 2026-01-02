@@ -22,7 +22,7 @@ def isin(cur):
     return cur[0] >= 0 and cur[0] < n and cur[1] >= 0 and cur[1] < n
 
 answer = 0
-
+cnt = 0
 while True:
     if not isin(cur) or answer == -1:
         break
@@ -30,14 +30,23 @@ while True:
     while True:
         if isin([cur[0]+dx[d], cur[1]+dy[d]]) and grid[cur[0] + dx[d]][cur[1] + dy[d]] == '#':
             d = (d+1)%4
+            cnt += 1
+            if cnt >= 100:
+                answer = -1
+                break
         elif not isin([cur[0]+dx[d], cur[1]+dy[d]]):
             answer += 1
             cur[0] += dx[d]
             cur[1] += dy[d]
+            cnt += 1
+            if cnt >= 100:
+                answer = -1
+                break
             break
         else:
             answer += 1
-            if answer >= 100:
+            cnt += 1
+            if cnt >= 100:
                 answer = -1
             cur[0] += dx[d]
             cur[1] += dy[d]
