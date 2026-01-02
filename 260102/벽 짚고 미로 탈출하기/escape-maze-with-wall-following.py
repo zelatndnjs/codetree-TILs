@@ -31,7 +31,7 @@ while True:
         if isin([cur[0]+dx[d], cur[1]+dy[d]]) and grid[cur[0] + dx[d]][cur[1] + dy[d]] == '#':
             d = (d+1)%4
             cnt += 1
-            if cnt >= 100:
+            if cnt >= 10000:
                 answer = -1
                 break
         elif not isin([cur[0]+dx[d], cur[1]+dy[d]]):
@@ -39,14 +39,14 @@ while True:
             cur[0] += dx[d]
             cur[1] += dy[d]
             cnt += 1
-            if cnt >= 100:
+            if cnt >= 10000:
                 answer = -1
                 break
             break
         else:
             answer += 1
             cnt += 1
-            if cnt >= 100:
+            if cnt >= 10000:
                 answer = -1
             cur[0] += dx[d]
             cur[1] += dy[d]
