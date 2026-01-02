@@ -28,8 +28,13 @@ while True:
         break
 
     while True:
-        if grid[cur[0] + dx[d]][cur[1] + dy[d]] == '#':
+        if isin([cur[0]+dx[d], cur[1]+dy[d]]) and grid[cur[0] + dx[d]][cur[1] + dy[d]] == '#':
             d = (d+1)%4
+        elif not isin([cur[0]+dx[d], cur[1]+dy[d]]):
+            answer += 1
+            cur[0] += dx[d]
+            cur[1] += dy[d]
+            break
         else:
             answer += 1
             cur[0] += dx[d]
