@@ -37,10 +37,10 @@ while True:
             break
         else:
             answer += 1
-            cur[0] += dx[d]
-            cur[1] += dy[d]
             if cur[0] == sx and cur[1] == sy and d == 0:
                 answer = -1
+            cur[0] += dx[d]
+            cur[1] += dy[d]
             d = (d-1)%4
             break
 
