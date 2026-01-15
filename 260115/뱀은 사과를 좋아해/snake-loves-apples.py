@@ -1,230 +1,78 @@
-n,m,k = map(int, input().split())
-grid = [[0 for _ in range(n)] for _ in range(n)]
-for i in range(m):
-    x,y = map(int, input().split())
-    x -= 1
-    y -= 1
-    grid[x][y] = 1
+# 뱀 게임 시뮬레이션 (deque + set)
+# 입력 형식 (예시):
+# N M K
+# (사과 M개) x y
+# (명령 K개) D p   (D는 U/D/L/R, p는 초)
+#
+# 출력: 게임 종료까지 걸린 시간(초)
 
+from collections import deque
 
-def isin(n, x, y):
-    return 0 <= x < n and 0 <= y < n
+def main():
+    n, m, k = map(int, input().split())
 
+    grid = [[0] * n for _ in range(n)]
+    for _ in range(m):
+        x, y = map(int, input().split())
+        grid[x - 1][y - 1] = 1
 
-class Node:
-    def __init__(self, x, y):
-        self.x = x - 1
-        self.y = y - 1
-        self.prev = None
-        self.next = None
+    commands = []
+    for _ in range(k):
+        direction, seconds = input().split()
+        commands.append((direction, int(seconds)))
 
-class Snake:
-    def __init__(self, head, tail):
-        self.head = head
-        self.tail = tail
+    direction_to_delta = {
+        'U': (-1, 0),
+        'D': (1, 0),
+        'L': (0, -1),
+        'R': (0, 1),
+    }
 
-def isinsanke(snake: Snake, n: int) -> bool:
-    node = snake.head
-    while True:
-        if node is None:
-            return True
-            break
+    snake_body = deque([(0, 0)])     # 머리 -> 꼬리
+    snake_cells = set([(0, 0)])      # 점유 칸 (충돌 O(1) 확인)
 
-        if isin(n, node.x, node.y):
-            node = node.next
-        else:
-            return False
-            break
+    elapsed_seconds = 0
 
-def isCollape(snake: Snake) -> bool:
-    node = snake.head
-    t = []
-    while True:
-        if node is None:
-            return False
-            break
-        else:
-            if (node.x, node.y) in t:
-                return True
-                break
+    for direction, seconds_to_move in commands:
+        dx, dy = direction_to_delta[direction]
+
+        for _ in range(seconds_to_move):
+            head_x, head_y = snake_body[0]
+            next_x, next_y = head_x + dx, head_y + dy
+
+            # 1) 벽 충돌
+            if not (0 <= next_x < n and 0 <= next_y < n):
+                print(elapsed_seconds + 1)
+                return
+
+            has_apple = (grid[next_x][next_y] == 1)
+            tail_will_move = (not has_apple)  # 사과 없으면 꼬리 제거됨
+
+            # 2) 몸 충돌 (꼬리 예외 처리)
+            if (next_x, next_y) in snake_cells:
+                tail_x, tail_y = snake_body[-1]
+                is_moving_into_tail = (next_x, next_y) == (tail_x, tail_y)
+
+                # 꼬리가 빠지는 이동이고, 그 자리에 머리가 들어가는 경우는 OK
+                if not (tail_will_move and is_moving_into_tail):
+                    print(elapsed_seconds + 1)
+                    return
+
+            # 3) 머리 이동(추가)
+            snake_body.appendleft((next_x, next_y))
+            snake_cells.add((next_x, next_y))
+
+            # 4) 사과 처리 / 꼬리 처리
+            if has_apple:
+                grid[next_x][next_y] = 0  # 사과 제거, 꼬리 유지(길이 +1)
             else:
-                t.append((node.x, node.y))
-                node = node.next
+                tail_x, tail_y = snake_body.pop()
+                snake_cells.remove((tail_x, tail_y))
 
-def move(snake: Snake, grid: list, d: str, n: int) -> bool:
-    if d == 'U':
-        if isin(n, snake.head.x -1, snake.head.y):
-            if grid[snake.head.x-1][snake.head.y] == 1:
-                grid[snake.head.x-1][snake.head.y] = 0
-                new = Node(snake.tail.x+1, snake.tail.y+1)
-                node = snake.tail
-                while True:
-                    if node.prev is None:
-                        break
-                    else:
-                        node.x = node.prev.x
-                        node.y = node.prev.y
-                        node = node.prev
-                snake.tail.next = new
-                new.prev = snake.tail
-                snake.tail = new
-                snake.head.x -= 1
-                return True
-            else:
-                node = snake.tail
-                while True:
-                    if node.prev is None:
-                        break
-                    else:
-                        node.x = node.prev.x
-                        node.y = node.prev.y
-                        node = node.prev
-                snake.head.x -= 1
-                return True
-        else:
-            return False
-    elif d == 'D':
-        if isin(n, snake.head.x + 1, snake.head.y):
-            if grid[snake.head.x + 1][snake.head.y] == 1:
-                grid[snake.head.x + 1][snake.head.y] = 0
-                new = Node(snake.tail.x+1, snake.tail.y+1)
-                node = snake.tail
-                while True:
-                    if node.prev is None:
-                        break
-                    else:
-                        node.x = node.prev.x
-                        node.y = node.prev.y
-                        node = node.prev
-                snake.tail.next = new
-                new.prev = snake.tail
-                snake.tail = new
-                snake.head.x += 1
-                return True
-            else:
-                node = snake.tail
-                while True:
-                    if node.prev is None:
-                        break
-                    else:
-                        node.x = node.prev.x
-                        node.y = node.prev.y
-                        node = node.prev
-                snake.head.x += 1
-                return True
-        else:
-            return False
-    elif d == 'R':
-        if isin(n, snake.head.x, snake.head.y + 1):
-            if grid[snake.head.x][snake.head.y + 1] == 1:
-                grid[snake.head.x][snake.head.y + 1] = 0
-                new = Node(snake.tail.x+1, snake.tail.y+1)
-                node = snake.tail
-                while True:
-                    if node.prev is None:
-                        break
-                    else:
-                        node.x = node.prev.x
-                        node.y = node.prev.y
-                        node = node.prev
-                snake.tail.next = new
-                new.prev = snake.tail
-                snake.tail = new
-                snake.head.y += 1
-                return True
-            else:
-                node = snake.tail
-                while True:
-                    if node.prev is None:
-                        break
-                    else:
-                        node.x = node.prev.x
-                        node.y = node.prev.y
-                        node = node.prev
-                snake.head.y += 1
-                return True
-        else:
-            return False
-    else:
-        if isin(n, snake.head.x, snake.head.y - 1):
-            if grid[snake.head.x][snake.head.y - 1] == 1:
-                grid[snake.head.x][snake.head.y - 1] = 0
-                new = Node(snake.tail.x+1, snake.tail.y+1)
-                node = snake.tail
-                while True:
-                    if node.prev is None:
-                        break
-                    else:
-                        node.x = node.prev.x
-                        node.y = node.prev.y
-                        node = node.prev
-                snake.tail.next = new
-                new.prev = snake.tail
-                snake.tail = new
-                snake.head.y -= 1
-                return True
-            else:
-                node = snake.tail
-                while True:
-                    if node.prev is None:
-                        break
-                    else:
-                        node.x = node.prev.x
-                        node.y = node.prev.y
-                        node = node.prev
-                snake.head.y -= 1
-                return True
-        else:
-            return False
+            elapsed_seconds += 1
 
+    # 문제 설명상: "뱀이 전부 움직였거나" 명령을 다 수행하면 종료
+    print(elapsed_seconds)
 
-def ps(grid, snake, answer):
-    newgrid = [[0 for _ in range(n)] for _ in range(n)]
-    for i in range(n):
-        for j in range(n):
-            newgrid[i][j] = grid[i][j]
-    no = snake.head
-    while True:
-        if no is None:
-            break
-        else:
-            newgrid[no.x][no.y] = 8
-            no = no.next
-    newgrid[snake.tail.x][snake.tail.y] = 7
-    newgrid[snake.head.x][snake.head.y] = 9
-
-    print("--------------------------------")
-    print()
-    for i in range(n):
-        for j in range(n):
-            print(newgrid[i][j], end=' ')
-        print()
-    print()
-    print("--------------------------------")
-    print(f"Answer is {answer}")
-node = Node(1,1)
-snake = Snake(node, node)
-
-answer = 0
-
-chk = 0
-for i in range(1, k+1):
-    if chk == 1:
-        break
-    d, p = input().split()
-    p = int(p)
-    for _ in range(p):
-        # ps(grid, snake,answer)
-        if move(snake, grid, d,n):
-            if isCollape(snake):
-                answer += 1
-                chk = 1
-                break
-            else:
-                answer += 1
-        else:
-            answer += 1
-            chk = 1
-            break
-
-print(answer)
+if __name__ == "__main__":
+    main()
