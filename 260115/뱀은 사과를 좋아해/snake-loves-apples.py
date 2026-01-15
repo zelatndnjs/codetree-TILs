@@ -20,8 +20,8 @@ class Node:
 
 class Snake:
     def __init__(self, head, tail):
-        self.head = Node(1,1)
-        self.tail = self.head
+        self.head = head
+        self.tail = tail
 
 def isinsanke(snake: Snake, n: int) -> bool:
     node = snake.head
@@ -55,7 +55,8 @@ def move(snake: Snake, grid: list, d: str, n: int) -> bool:
     if d == 'U':
         if isin(n, snake.head.x -1, snake.head.y):
             if grid[snake.head.x-1][snake.head.y] == 1:
-                new = Node(snake.tail.x, snake.tail.y)
+                grid[snake.head.x-1][snake.head.y] = 0
+                new = Node(snake.tail.x+1, snake.tail.y+1)
                 node = snake.tail
                 while True:
                     if node.prev is None:
@@ -85,7 +86,8 @@ def move(snake: Snake, grid: list, d: str, n: int) -> bool:
     elif d == 'D':
         if isin(n, snake.head.x + 1, snake.head.y):
             if grid[snake.head.x + 1][snake.head.y] == 1:
-                new = Node(snake.tail.x, snake.tail.y)
+                grid[snake.head.x + 1][snake.head.y] = 0
+                new = Node(snake.tail.x+1, snake.tail.y+1)
                 node = snake.tail
                 while True:
                     if node.prev is None:
@@ -115,7 +117,8 @@ def move(snake: Snake, grid: list, d: str, n: int) -> bool:
     elif d == 'R':
         if isin(n, snake.head.x, snake.head.y + 1):
             if grid[snake.head.x][snake.head.y + 1] == 1:
-                new = Node(snake.tail.x, snake.tail.y)
+                grid[snake.head.x][snake.head.y + 1] = 0
+                new = Node(snake.tail.x+1, snake.tail.y+1)
                 node = snake.tail
                 while True:
                     if node.prev is None:
@@ -145,7 +148,8 @@ def move(snake: Snake, grid: list, d: str, n: int) -> bool:
     else:
         if isin(n, snake.head.x, snake.head.y - 1):
             if grid[snake.head.x][snake.head.y - 1] == 1:
-                new = Node(snake.tail.x, snake.tail.y)
+                grid[snake.head.x][snake.head.y - 1] = 0
+                new = Node(snake.tail.x+1, snake.tail.y+1)
                 node = snake.tail
                 while True:
                     if node.prev is None:
@@ -172,6 +176,32 @@ def move(snake: Snake, grid: list, d: str, n: int) -> bool:
                 return True
         else:
             return False
+
+
+def ps(grid, snake, answer):
+    newgrid = [[0 for _ in range(n)] for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            newgrid[i][j] = grid[i][j]
+    no = snake.head
+    while True:
+        if no is None:
+            break
+        else:
+            newgrid[no.x][no.y] = 8
+            no = no.next
+    newgrid[snake.tail.x][snake.tail.y] = 7
+    newgrid[snake.head.x][snake.head.y] = 9
+
+    print("--------------------------------")
+    print()
+    for i in range(n):
+        for j in range(n):
+            print(newgrid[i][j], end=' ')
+        print()
+    print()
+    print("--------------------------------")
+    print(f"Answer is {answer}")
 node = Node(1,1)
 snake = Snake(node, node)
 
@@ -184,6 +214,7 @@ for i in range(1, k+1):
     d, p = input().split()
     p = int(p)
     for _ in range(p):
+        # ps(grid, snake,answer)
         if move(snake, grid, d,n):
             if isCollape(snake):
                 answer += 1
