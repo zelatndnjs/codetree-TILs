@@ -46,28 +46,24 @@ def main():
                 return
 
             has_apple = (grid[next_x][next_y] == 1)
-            tail_will_move = (not has_apple)  # 사과 없으면 꼬리 제거됨
 
-            # 2) 몸 충돌 (꼬리 예외 처리)
+            # 2) 사과가 없으면 "꼬리를 먼저" 제거해서 공간을 비워준다
+            if not has_apple:
+                tail_x, tail_y = snake_body.pop()
+                snake_cells.remove((tail_x, tail_y))
+
+            # 3) 이제 몸 충돌 체크 (꼬리 칸으로 들어가는 경우도 자연스럽게 처리됨)
             if (next_x, next_y) in snake_cells:
-                tail_x, tail_y = snake_body[-1]
-                is_moving_into_tail = (next_x, next_y) == (tail_x, tail_y)
+                print(elapsed_seconds + 1)
+                return
 
-                # 꼬리가 빠지는 이동이고, 그 자리에 머리가 들어가는 경우는 OK
-                if not (tail_will_move and is_moving_into_tail):
-                    print(elapsed_seconds + 1)
-                    return
-
-            # 3) 머리 이동(추가)
+            # 4) 머리 추가
             snake_body.appendleft((next_x, next_y))
             snake_cells.add((next_x, next_y))
 
-            # 4) 사과 처리 / 꼬리 처리
+            # 5) 사과 처리 (사과 있으면 꼬리 안 뺐으니 길이 증가)
             if has_apple:
-                grid[next_x][next_y] = 0  # 사과 제거, 꼬리 유지(길이 +1)
-            else:
-                tail_x, tail_y = snake_body.pop()
-                snake_cells.remove((tail_x, tail_y))
+                grid[next_x][next_y] = 0
 
             elapsed_seconds += 1
 
