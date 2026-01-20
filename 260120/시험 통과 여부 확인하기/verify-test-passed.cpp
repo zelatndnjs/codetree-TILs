@@ -11,7 +11,7 @@ int main() {
         cout <<"pass";
     }
     else{
-cout << 80- a <<"more score";
+cout << 80- a <<" more score";
     }
     // Please write your code here.
     return 0;
