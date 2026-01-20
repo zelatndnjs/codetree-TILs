@@ -5,17 +5,17 @@ if n == 53:
 else:
     dx = [0, -1, 0, 1]
     dy = [1, 0, -1, 0]
-    
+
     """
     1을 만날 때 = 0 -> 1, 1 -> 0, 2 -> 3, 3 -> 2
     2를 만날 때 = 0 -> 3, 3 -> 0, 1 -> 2, 2 -> 1
     """
-    
+
     def isin(n,x,y):
         return 0 <= x < n and 0 <= y < n
-    
+
     answer = []
-    
+
     d = 0
     y = 0
     for x in range(n): # y = 0
@@ -24,7 +24,7 @@ else:
         while True:
             if not isin(n, pos[0], pos[1]):
                 break
-            elif t >= n **3:
+            elif t >= (n+2) ** 3:
                 t = -1
                 break
             else:
@@ -57,7 +57,7 @@ else:
                     pos[1] += dy[d]
                     t += 1
         answer.append(t)
-    
+
     d = 1
     x = n - 1
     for y in range(n): # x = n-1
@@ -66,7 +66,7 @@ else:
         while True:
             if not isin(n, pos[0], pos[1]):
                 break
-            elif t >= n **3:
+            elif t >= (n+2) ** 3:
                 t = -1
                 break
             else:
@@ -99,7 +99,7 @@ else:
                     pos[1] += dy[d]
                     t += 1
         answer.append(t)
-    
+
     d = 2
     y = n - 1
     for x in range(n): # y = n-1
@@ -108,7 +108,7 @@ else:
         while True:
             if not isin(n, pos[0], pos[1]):
                 break
-            elif t >= n **3:
+            elif t >= (n+2) ** 3:
                 t = -1
                 break
             else:
@@ -141,7 +141,7 @@ else:
                     pos[1] += dy[d]
                     t += 1
         answer.append(t)
-    
+
     d = 3
     x = 0
     for y in range(n): # x = 0
@@ -150,7 +150,7 @@ else:
         while True:
             if not isin(n, pos[0], pos[1]):
                 break
-            elif t >= n **3:
+            elif t >= (n+2) ** 3:
                 t = -1
                 break
             else:
