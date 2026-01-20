@@ -20,7 +20,10 @@ for x in range(n): # y = 0
     t = 1
     pos = [x,y]
     while True:
-        if not isin(n, pos[0], pos[1]):
+        if not isin(n, pos[0], pos[1]) or t >= n**2:
+            break
+        elif t >= n **2:
+            t = -1
             break
         else:
             if grid[pos[0]][pos[1]] == 1:
