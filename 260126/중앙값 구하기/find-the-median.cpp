@@ -37,7 +37,7 @@ int main() {
     }
     else{
          one = a;
-        two = b;
+         two = b;
 
         if(b>c)
         {
@@ -50,8 +50,9 @@ int main() {
         }
         else{
              two = b;
-            three = c;
-            cout << two;
+             three = c;
+             
+             cout << two;
 
         }
 
