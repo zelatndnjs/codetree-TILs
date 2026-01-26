@@ -19,42 +19,75 @@ int main() {
 
         if(a>c)
         {
-            two = c;
-            three = a;
+            if(b>c)
+            {
+                 two = b;
+            }
+            else
+            {
+                two = c;
+            }
+            
+
 
             cout << two;
 
         }
-        else{
-             two = a;
-            three = c;
+        else
+        {
+            //c 가 더큼
 
-            cout << two;
+             if(b>a)
+            {
+                 two = b;
+            }
+            else
+            {
+                two = a;
+            }
+             cout << two;
+
 
         }
 
 
     }
-    else{
-         one = a;
-         two = b;
+    else// b>a
+    {
+        one = b;
+        two = a;
 
         if(b>c)
         {
-            two = c;
-            three = b;
+            if(a>c)
+            {
+                 two = a;
+            }
+            else
+            {
+                two = c;
+            }
+            
+
 
             cout << two;
 
-
         }
-        else{
-             two = b;
-             three = c;
-             
+        else
+        {
+            //c 가 더큼
+
+             if(b>a)
+            {
+                 two = b;
+            }
+            else
+            {
+                two = a;
+            }
              cout << two;
-
         }
+
 
     }
     
