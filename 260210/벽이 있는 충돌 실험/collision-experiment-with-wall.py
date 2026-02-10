@@ -1,7 +1,10 @@
 t = int(input())
 
-class ball:
-    def __init__(self, x,y,d,n):
+DX = [1, -1, 0, 0]
+DY = [0, 0, 1, -1]
+
+class Ball:
+    def __init__(self, x, y, d, n):
         self.x = x
         self.y = y
         if d == 'L':
@@ -28,43 +31,46 @@ class ball:
             self.d = 2
 
     def move(self):
-        dx = [1,-1,0,0]
-        dy = [0,0,1,-1]
+        next_x = self.x + DX[self.d]
+        next_y = self.y + DY[self.d]
 
-        if self.isin(self.x+dx[self.d], self.y+dy[self.d]):
-            self.x = self.x + dx[self.d]
-            self.y = self.y + dy[self.d]
+        if self.isin(next_x, next_y):
+            self.x = next_x
+            self.y = next_y
         else:
             self.switch()
 
-def chk(balls):
-    r = set()
-    for i in range(len(balls)-1):
-        for j in range(i+1, len(balls)):
-            if balls[i].x == balls[j].x and balls[i].y == balls[j].y:
-                r.add(i)
-                r.add(j)
+def remove_collisions(balls):
+    position_count = {}
+    for b in balls:
+        key = (b.x, b.y)
+        if key in position_count:
+            position_count[key] += 1
+        else:
+            position_count[key] = 1
 
-    r = sorted(r, reverse=True)
-    for i in r:
-        del balls[i]
+    survivors = []
+    for b in balls:
+        if position_count[(b.x, b.y)] == 1:
+            survivors.append(b)
+    return survivors
 
-for time in range(t):
+for _ in range(t):
+    n, m = map(int, input().split())
     balls = []
 
-    n,m = map(int, input().split())
-
-    for i in range(m):
-        x,y,d = input().split()
+    for _ in range(m):
+        x, y, d = input().split()
         x = int(x) - 1
         y = int(y) - 1
-        newball = ball(x,y,d,n)
-        balls.append(newball)
+        balls.append(Ball(x, y, d, n))
 
-    for i in range(2*n):
+    for _ in range(2 * n):
         for b in balls:
             b.move()
-        chk(balls)
+        balls = remove_collisions(balls)
+
+        if not balls:  # 더 없으면 조기 종료 가능
+            break
 
     print(len(balls))
-
